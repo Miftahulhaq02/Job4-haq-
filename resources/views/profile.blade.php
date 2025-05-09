@@ -1,27 +1,38 @@
-<html>
-    <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <head>    
-    <body>
-        <div class="container mt-4">
-            <div class="card">
-                <div class="card-header">
-                    <h1>Profil Saya</h1>
-                </div>
-                <div class="card-body">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiLyySSE5U6i1ikBYS5hp-pjvrarAxKqJQ_A&s" alt="Profile Picture" width="150">
-                    <h3>Muhammad Miftahul Haq</h3>
-                    <p>miftahhaq57@gmail.com</p>
-                    <p>"Bekerja keras, bermain lebih keras, dan selalu mencari cara untuk lebih berkembang."</p>
-                    <h5>Skills:</h5>
-                    <ul>
-                        <li>Pintar Ngaji</li>
-                        <li>Pintar Sholawat</li>
-                        <li>Bisa menjadi orang yang di ciptakan allah</li>
-                        <li>Bisa jadi umat Nabi Muhammad</li>
-                    <ul>
-                </div>
+@extends('layouts.app')
+
+@section('title', 'Profil Pengguna')
+
+@section('content')
+
+    <div class="container mt-4 d-flex justify-content-center">
+        <div class="card shadow border-primary" style="width: 600px;">
+            <div class="card-header bg-primary text-white text-center">
+                <h1 class="text-5xl font-bold mb-0">Profil Saya</h1>
+            </div>
+            <div class="card-body bg-light text-center">
+                <!-- Foto bulat tidak melar -->
+                <img src="{{ asset($profile['profile_picture']) }}" 
+                     alt="Profile Picture" 
+                     width="200" height="200"
+                     class="rounded-circle border border-3 border-primary mb-3"
+                     style="object-fit: cover;">
+                     
+                <h3 class="text-primary">{{ $profile['name'] }}</h3>
+                <p class="text-muted">Email : {{ $profile['email'] }}</p>
+                <p class="text-dark">Bio: {{ $profile['bio'] }}</p>
+
+                @if(count($profile['skills']) > 0) 
+                    <h5 class="text-primary mt-4">Skills:</h5>
+                    <ul class="list-unstyled">
+                        @foreach($profile['skills'] as $skill)
+                            <li class="text-dark">• {{ $skill }}</li>
+                        @endforeach
+                    </ul>   
+                @else
+                    <p class="text-secondary">Tidak ada skill yang ditampilkan</p> 
+                @endif
             </div>
         </div>
-    </body>
-</html>
+    </div>
+
+@endsection

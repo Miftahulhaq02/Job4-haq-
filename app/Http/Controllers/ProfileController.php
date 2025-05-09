@@ -6,10 +6,16 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    //
-
     public function index()
     {
-        return view('profile');
+
+        $profile = [
+            'name' => 'Muhammad Miftahul Haq',
+            'email' => 'mifahhaq57@gmail.com',
+            'bio' => 'YTTA',
+            'profile_picture' => 'image/dontol.jpg',
+            'skills' => ['Serba bisa', 'Dll', 'Dll']
+        ];
+        return view('profile', compact('profile'));
     }
 }
